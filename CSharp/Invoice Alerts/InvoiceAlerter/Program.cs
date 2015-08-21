@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace SlackAlerter
+namespace InvoiceAlerter
 {
     class Program
     {
         static void Main(string[] args)
         {
-            
+
             Console.WriteLine("Susbscribing to Hoist Events");
             var subscription = new Hoist.SDK.Events.Listener(@default.Default.HoistAPIKey, includeEvents: new[] { @default.Default.XeroConnectorKey + ":new:invoice" });
             subscription.NewEvent += (Object sender, HoistEvent hoistEvent) => {

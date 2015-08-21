@@ -8,21 +8,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SlackAlerter {
-    
-    
+namespace InvoiceAlerter {
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class @default : global::System.Configuration.ApplicationSettingsBase {
-        
+
         private static @default defaultInstance = ((@default)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new @default())));
-        
+
         public static @default Default {
             get {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("APIKey")]
@@ -34,7 +34,7 @@ namespace SlackAlerter {
                 this["HoistAPIKey"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("XeroConnectorKey")]
