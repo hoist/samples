@@ -59,7 +59,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hoist.SDK\Hoist.SDK.csproj">
+    <ProjectReference Include="..\..\Hoist.SDK\Hoist.SDK.csproj">
       <Project>{d5d702b9-9b4e-44e0-89ba-cf4c7f054032}</Project>
       <Name>Hoist.SDK</Name>
     </ProjectReference>
