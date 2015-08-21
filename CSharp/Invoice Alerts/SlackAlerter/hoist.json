@@ -1,0 +1,11 @@
+{
+  "modules": [{
+    "name": "alertSlack",
+    "src": "./Hoist Scripts/PostAlertToSlack.js"
+  }],
+  "on": {
+    "new:alert": {
+      "modules": ["alertSlack"]
+    }
+  }
+}
