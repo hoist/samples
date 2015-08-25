@@ -8,5 +8,7 @@ namespace Hoist.SDK.Events
 {
     public class HoistEvent
     {
+        public string id;
+        public dynamic Payload;
     }
 }

@@ -1,9 +1,5 @@
 ﻿using Hoist.SDK.Events;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace InvoiceAlerter
 {
     class Program
@@ -12,8 +8,8 @@ namespace InvoiceAlerter
         {
 
             Console.WriteLine("Susbscribing to Hoist Events");
-            var subscription = new Hoist.SDK.Events.Listener(@default.Default.HoistAPIKey, includeEvents: new[] { @default.Default.XeroConnectorKey + ":new:invoice" });
-            subscription.NewEvent += (Object sender, HoistEvent hoistEvent) => {
+            var subscription = new Listener(@default.Default.HoistAPIKey, includeEvents: new[] { @default.Default.XeroConnectorKey + ":new:invoice" });
+            subscription.NewEvent += (object sender, HoistEvent hoistEvent) => {
                 Console.WriteLine(hoistEvent.ToString());
             };
             subscription.Start();
