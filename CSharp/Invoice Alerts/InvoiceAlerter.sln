@@ -3,9 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceAlerter", ".\InvoiceAlerter\InvoiceAlerter.csproj", "{F3113C20-8251-4521-9EB2-ECFCC6D33F23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceAlerter", "InvoiceAlerter\InvoiceAlerter.csproj", "{F3113C20-8251-4521-9EB2-ECFCC6D33F23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hoist.SDK", "..\Hoist.SDK\Hoist.SDK.csproj", "{D5D702B9-9B4E-44E0-89BA-CF4C7F054032}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hoist Scripts", "Hoist Scripts", "{9480C122-44A5-4AC0-B679-6D897DBF5AE2}"
+	ProjectSection(SolutionItems) = preProject
+		Hoist Scripts\PostAlertToSlack.js = Hoist Scripts\PostAlertToSlack.js
+		Hoist Scripts\Variables.js = Hoist Scripts\Variables.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B53E3EB2-41A3-47E7-BBCF-9D29A89275B1}"
+	ProjectSection(SolutionItems) = preProject
+		hoist.json = hoist.json
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -48,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\HoistEvent.cs" />
-    <Compile Include="Events\Listener.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Events.cs" />
+    <Compile Include="Helpers\Listener.cs" />
+    <Compile Include="Helpers\Raiser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
