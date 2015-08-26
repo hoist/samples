@@ -1,4 +1,4 @@
-﻿using Hoist.SDK.Events;
+﻿using Hoist.SDK;
 using System;
 namespace InvoiceAlerter
 {
@@ -8,9 +8,11 @@ namespace InvoiceAlerter
         {
 
             Console.WriteLine("Susbscribing to Hoist Events");
-            var subscription = new Listener(@default.Default.HoistAPIKey, includeEvents: new[] { @default.Default.XeroConnectorKey + ":new:invoice" });
-            subscription.NewEvent += (object sender, HoistEvent hoistEvent) => {
-                Console.WriteLine(hoistEvent.ToString());
+            Configuration.ApiKey = @default.Default.HoistAPIKey;
+            var subscription = Events.Listen(includeEvents: new[] { @default.Default.XeroConnectorKey + ":new:invoice" });
+            subscription.NewEvent += (object sender, Events.HoistEvent hoistEvent) => {
+                //raise a new event in hoist to post the event to slack
+                Events.Raise("post:to:slack", hoistEvent.Payload);
             };
             subscription.Start();
             Console.WriteLine("Listening for events, press any key to end.");

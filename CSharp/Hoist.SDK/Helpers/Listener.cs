@@ -5,18 +5,18 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Timers;
 
-namespace Hoist.SDK.Events
+namespace Hoist.SDK.Helpers
 {
 
     public class Listener
     {
         private string apiKey;
-        private IList<String> includeEvents;
+        private IList<string> includeEvents;
         private IList<PollingUrl> pollingUrls = new List<PollingUrl>();
 
-        public event EventHandler<HoistEvent> NewEvent;
+        public event EventHandler<Events.HoistEvent> NewEvent;
 
-        public Listener(string apiKey, IList<String> includeEvents = null)
+        public Listener(string apiKey, IList<string> includeEvents = null)
         {
             this.apiKey = apiKey;
             this.includeEvents = includeEvents;
@@ -24,20 +24,20 @@ namespace Hoist.SDK.Events
 
         public void Start()
         {
-            if (this.includeEvents != null && this.includeEvents.Count() > 0)
+            if (includeEvents != null && includeEvents.Count() > 0)
             {
-                foreach (var eventName in this.includeEvents)
+                foreach (var eventName in includeEvents)
                 {
-                    var pollingUrl = new PollingUrl(this.apiKey, eventName);
-                    pollingUrl.OnNewEvent += (object sender, HoistEvent hoistEvent) => { this.NewEvent.Invoke(this, hoistEvent); };
+                    var pollingUrl = new PollingUrl(apiKey, eventName);
+                    pollingUrl.OnNewEvent += (object sender, Events.HoistEvent hoistEvent) => { NewEvent.Invoke(this, hoistEvent); };
                     pollingUrl.Start();
                     pollingUrls.Add(pollingUrl);
                 }
             }
             else
             {
-                var pollingUrl = new PollingUrl(this.apiKey);
-                pollingUrl.OnNewEvent += (object sender, HoistEvent hoistEvent) => { this.NewEvent.Invoke(this, hoistEvent); };
+                var pollingUrl = new PollingUrl(apiKey);
+                pollingUrl.OnNewEvent += (object sender, Events.HoistEvent hoistEvent) => { NewEvent.Invoke(this, hoistEvent); };
                 pollingUrl.Start();
                 pollingUrls.Add(pollingUrl);
             }
@@ -58,7 +58,7 @@ namespace Hoist.SDK.Events
             private string eventName;
             private UriBuilder requestUri;
             string token = null;
-            internal event EventHandler<HoistEvent> OnNewEvent;
+            internal event EventHandler<Events.HoistEvent> OnNewEvent;
 
             public PollingUrl(string apiKey, string eventName = null)
             {
@@ -92,6 +92,7 @@ namespace Hoist.SDK.Events
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = requestUri.Uri;
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Hoist", Configuration.ApiKey);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -99,7 +100,7 @@ namespace Hoist.SDK.Events
                     HttpResponseMessage response = await client.GetAsync(requestUri.Uri.PathAndQuery);
                     if (response.IsSuccessStatusCode)
                     {
-                        var events = await response.Content.ReadAsAsync<IEnumerable<HoistEvent>>();
+                        var events = await response.Content.ReadAsAsync<IEnumerable<Events.HoistEvent>>();
                         foreach (var ev in events)
                         {
                             //fire any returned events
